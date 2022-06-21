@@ -16,6 +16,7 @@ if ($res->num_rows > 0) {
     while ($row = $res->fetch_assoc()) {
         if (password_verify($password, $row['password'])) {
             $_SESSION['user'] = array(
+                "id" => $row['id'],
                 "username" => $row['username'],
                 "email" => $row['email'],
             );

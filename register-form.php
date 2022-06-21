@@ -1,26 +1,34 @@
 <?php
 include_once "base.php";
 ?>
-<div>
-    <h1>Register</h1>
-</div>
+
 <?php
 
 if (isset($_GET['error'])) {
     echo filter_input(INPUT_GET, 'error', FILTER_SANITIZE_SPECIAL_CHARS);
 }
 ?>
-<form action="register.php" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" required>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required>
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" required>
-    <label for="re-password">Repeat Password: </label>
-    <input type="password" id="re-password" required>
-    <input type="submit" value="Register" disabled id="submit">
-</form>
+<div class="form-container container mt-5">
+    <form action="register.php" method="POST" class="bg-dark p-4 text-light rounded">
+        <div class="mb-3">
+            <label class="form-label" for="username">Username:</label>
+            <input type="text" class="form-control" name="username" id="username" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control" type="email" name="email" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password: </label>
+            <input class="form-control" type="password" name="password" id="password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="re-password">Repeat Password: </label>
+            <input class="form-control" type="password" id="re-password" required>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Register" disabled id="submit">
+    </form>
+</div>
 <script>
 const check_if_match = () => {
     var password = document.getElementById("password").value
