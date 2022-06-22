@@ -13,6 +13,11 @@
         max-width: 33%;
     }
 
+    .sort-btn:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
     @media screen and (max-width:1000px) {
         .form-container {
             max-width: 100%;
@@ -25,7 +30,7 @@
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-            <a href="login-form.php" class="navbar-brand fs-2 fw-bold">Finance Manager</a>
+            <a href="/index.php" class="navbar-brand fs-2 fw-bold">Finance Manager</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -34,10 +39,10 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="navbar-item">
-                        <a class="nav-link" href="login-form.php">Log in</a>
+                        <a class="nav-link" href="/login-form.php">Log in</a>
                     </li>
                     <li class="navbar-item">
-                        <a class="nav-link" href="register-form.php">Register</a>
+                        <a class="nav-link" href="/register-form.php">Register</a>
                     </li>
 
                 </ul>

@@ -24,9 +24,11 @@ $item = mysqli_fetch_assoc($req);
     </div>
     <div class="mb-3">
         <label class="form-label" for="type">Type: </label>
-        <select value="<?php echo $item["type"] ?>" class="form-select" name="type" id="type">
-            <option value="Expenses">Expenses</option>
-            <option value="Income">Income</option>
+        <select class="form-select" name="type" id="type">
+            <option <?php if ($item["type"] == "Expenses") : ?> selected="selected" <?php endif; ?> value="Expenses">
+                Expenses</option>
+            <option <?php if ($item["type"] == "Income") : ?> selected="selected" <?php endif; ?> value="Income">Income
+            </option>
         </select>
     </div>
     <div class="mb-3">

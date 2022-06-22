@@ -3,6 +3,7 @@ include_once "inc/base.php";
 if (!isset($_SESSION["user"])) {
     header("Location: login-form.php");
 }
+$search = "";
 ?>
 
 <div class="w-100 d-flex flex-row-reverse p-3">
@@ -40,33 +41,37 @@ if (!isset($_SESSION["user"])) {
     </form>
 </div>
 
+<?php
+
+$sql = "SELECT * FROM finances WHERE user_id = " . $_SESSION["user"]["id"];
+
+if (isset($_GET["search"])) {
+    $search = filter_input(INPUT_GET, "search", FILTER_SANITIZE_SPECIAL_CHARS);
+    $sql .= " AND name LIKE '%$search%'";
+}
+?>
+
 <ul class="container">
     <li class="card p-3 m-3 d-flex flex-md-row justify-content-md-around justify-content-sm-center">
-        <p class="text-center">Name</p>
-        <p class="text-center">Amount</p>
-        <p class="text-center">Type</p>
-        <p class="text-center">Date</p>
-        <p class="text-center" style="width:92px"></p>
+        <p class="text-center sort-btn">Name</p>
+        <p class="text-center sort-btn">Amount</p>
+        <p class="text-center sort-btn">Type</p>
+        <p class="text-center sort-btn">Date</p>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>">
+            <input type="text" class="form-control" name="search" value="<?php echo $search ?>" placeholder="Search...">
+        </form>
     </li>
     <?php
     include_once "utils/connect.php";
 
-    $sql = "SELECT * FROM finances WHERE user_id = " . $_SESSION["user"]["id"];
+
 
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_all($res, MYSQLI_ASSOC);
     foreach ($row as $item) : ?>
-    <li class="card p-3
-        <?php if ($item["type"] == "Expenses") : ?>
-        bg-danger
-        <?php endif ?>
-        <?php if ($item["type"] == "Income") : ?>
-        bg-success
-        <?php endif ?>
-        
-        text-light
-        
-        m-3 d-flex flex-md-row justify-content-md-around justify-content-sm-center align-item-center">
+    <li class=" card p-3 <?php if ($item["type"] == "Expenses") : ?> bg-danger <?php endif ?>
+                <?php if ($item["type"] == "Income") : ?> bg-success <?php endif ?> text-light m-3 d-flex flex-md-row
+                justify-content-md-around justify-content-sm-center align-item-center">
         <p class="text-center"><?php echo $item["name"] ?></p>
         <p class="text-center"><?php echo $item["price"] ?></p>
         <p class="text-center"><?php echo $item["type"] ?></p>
@@ -74,7 +79,7 @@ if (!isset($_SESSION["user"])) {
         <div class="d-flex flex-md-row align-items-center justify-content-center">
             <form action="utils/edit-item.php" method="POST" class="me-1">
                 <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
-                <input type="submit" name="submit" value="EDIT"  class="btn btn-dark">
+                <input type="submit" name="submit" value="EDIT" class="btn btn-dark">
             </form>
             <form action="utils/delete-item.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
