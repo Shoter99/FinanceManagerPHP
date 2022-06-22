@@ -72,8 +72,9 @@ if (!isset($_SESSION["user"])) {
         <p class="text-center"><?php echo $item["type"] ?></p>
         <p class="text-center"><?php echo $item["date"] ?></p>
         <div class="d-flex flex-md-row align-items-center justify-content-center">
-            <form action="utils/edit-item.php" class="me-1">
-                <button class="btn btn-dark">EDIT</button>
+            <form action="utils/edit-item.php" method="POST" class="me-1">
+                <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
+                <input type="submit" name="submit" value="EDIT"  class="btn btn-dark">
             </form>
             <form action="utils/delete-item.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
