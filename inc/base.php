@@ -10,7 +10,7 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
     .form-container {
-        max-width: 25%;
+        max-width: 33%;
     }
 
     @media screen and (max-width:1000px) {
@@ -23,9 +23,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container">
-            <a href="login.php" class="navbar-brand fs-2 fw-bold">Finance Manager</a>
+            <a href="login-form.php" class="navbar-brand fs-2 fw-bold">Finance Manager</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
@@ -45,9 +45,12 @@
         </div>
 
     </nav>
-    <?php
-
-    session_start();
+    <div class="container d-flex flex-column align-items-center">
 
 
-    ?>
+        <?php
+
+        session_start();
+
+
+        ?>

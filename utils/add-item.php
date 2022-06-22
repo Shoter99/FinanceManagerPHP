@@ -13,7 +13,7 @@ $userid = filter_input(INPUT_POST, "userid", FILTER_SANITIZE_SPECIAL_CHARS);
 $sql = "INSERT INTO finances (user_id, name, price, type, date) VALUES ('$userid','$name', '$price', '$type', '$date')";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: dashboard.php");
+    header("Location: /dashboard.php");
 } else {
     echo "Failed adding item to database";
 }

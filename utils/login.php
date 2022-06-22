@@ -1,9 +1,13 @@
 <?php
-include_once "base.php";
+session_start();
 include_once "connect.php";
 
 if (isset($_SESSION["user"])) {
     header("Location: dashboard.php");
+}
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    header("Location: login-form.php");
+    die();
 }
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -20,12 +24,11 @@ if ($res->num_rows > 0) {
                 "username" => $row['username'],
                 "email" => $row['email'],
             );
-            header("Location: dashboard.php");
+            header("Location: ../dashboard.php");
         } else {
-            header("Location: login-form.php?error=No user in database");
+            header("Location: ../login-form.php?error=Wrong username or password");
         }
     }
+} else {
+    header("Location: ../login-form.php?error=Wrong username or password");
 }
-
-
-include_once "endfile.php";

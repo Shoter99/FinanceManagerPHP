@@ -1,5 +1,5 @@
 <?php
-include_once "base.php";
+include_once "inc/base.php";
 ?>
 
 <?php
@@ -9,7 +9,7 @@ if (isset($_GET['error'])) {
 }
 ?>
 <div class="form-container container mt-5">
-    <form action="register.php" method="POST" class="bg-dark p-4 text-light rounded">
+    <form action="utils/register.php" method="POST" class="bg-dark p-4 text-light rounded">
         <div class="mb-3">
             <label class="form-label" for="username">Username:</label>
             <input type="text" class="form-control" name="username" id="username" required>
@@ -42,5 +42,5 @@ document.getElementById("re-password").addEventListener("change", () => check_if
 </script>
 
 <?php
-include_once "endfile.php";
+include_once "inc/endfile.php";
 ?>

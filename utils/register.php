@@ -6,6 +6,10 @@ session_start();
 if (!isset($_POST['username'])) {
     header("Location: index.php");
 }
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    header("Location: register-form.php");
+    die();
+}
 
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -19,17 +23,7 @@ $sql = "INSERT INTO Users (username, password, email) VALUES ('$username', '$pas
 
 if ($conn->query($sql) === TRUE) {
 
-    $sql_get_id = "SELECT id FROM Users WHERE username = '$username'";
-    if ($id = $conn->query($sql_get_id)) {
-        $_SESSION["user"] = array(
-            "id" => $id,
-            "username" => $username,
-            "email" => $email
-        );
-    }
-
-
-    header("Location: dashboard.php");
+    header("Location: dashboard.php?success=User successfully created");
 } else {
-    header("Location: index.php?error=Error while creating new user please try again later");
+    header("Location: register-form.php?error=Error while creating new user please try again later");
 }
