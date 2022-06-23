@@ -13,14 +13,22 @@
         max-width: 33%;
     }
 
+    .name {
+        width: 25%;
+    }
+
     .sort-btn:hover {
         cursor: pointer;
         text-decoration: underline;
     }
 
-    @media screen and (max-width:1000px) {
+    @media screen and (max-width:768px) {
         .form-container {
             max-width: 100%;
+        }
+
+        .name {
+            width: 100%;
         }
     }
     </style>

@@ -49,14 +49,16 @@ if (isset($_GET["search"])) {
     $search = filter_input(INPUT_GET, "search", FILTER_SANITIZE_SPECIAL_CHARS);
     $sql .= " AND name LIKE '%$search%'";
 }
+
+$sql .= " ORDER BY date DESC";
 ?>
 
 <ul class="container">
     <li class="card p-3 m-3 d-flex flex-md-row justify-content-md-around justify-content-sm-center">
-        <p class="text-center sort-btn">Name</p>
-        <p class="text-center sort-btn">Amount</p>
-        <p class="text-center sort-btn">Type</p>
-        <p class="text-center sort-btn">Date</p>
+        <p class="text-center">Name</p>
+        <p class="text-center">Amount</p>
+        <p class="text-center">Type</p>
+        <p class="text-center">Date</p>
         <form action="<?php $_SERVER['PHP_SELF'] ?>">
             <input type="text" class="form-control" name="search" value="<?php echo $search ?>" placeholder="Search...">
         </form>
@@ -72,10 +74,11 @@ if (isset($_GET["search"])) {
     <li class=" card p-3 <?php if ($item["type"] == "Expenses") : ?> bg-danger <?php endif ?>
                 <?php if ($item["type"] == "Income") : ?> bg-success <?php endif ?> text-light m-3 d-flex flex-md-row
                 justify-content-md-around justify-content-sm-center align-item-center">
-        <p class="text-center"><?php echo $item["name"] ?></p>
-        <p class="text-center"><?php echo $item["price"] ?></p>
-        <p class="text-center"><?php echo $item["type"] ?></p>
-        <p class="text-center"><?php echo $item["date"] ?></p>
+        <div class="text-center d-flex align-items-center justify-content-center name">
+            <?php echo $item["name"] ?></div>
+        <div class="text-center d-flex align-items-center justify-content-center"><?php echo $item["price"] ?></div>
+        <div class="text-center d-flex align-items-center justify-content-center"><?php echo $item["type"] ?></div>
+        <div class="text-center d-flex align-items-center justify-content-center"><?php echo $item["date"] ?></div>
         <div class="d-flex flex-md-row align-items-center justify-content-center">
             <form action="utils/edit-item.php" method="POST" class="me-1">
                 <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
